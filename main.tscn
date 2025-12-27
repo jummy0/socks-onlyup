@@ -44,7 +44,7 @@ terrain_type = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_37666"]
 material = ExtResource("7_vivmo")
-size = Vector3(8, 1, 8)
+size = Vector3(32, 1, 32)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_kek77")
