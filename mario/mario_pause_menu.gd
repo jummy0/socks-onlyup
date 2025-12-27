@@ -1,8 +1,6 @@
 class_name MarioPauseMenu extends Control
 
 @onready var resume_label = $Control/LabelContainer/ResumeLabel
-@onready var view_stage_label = $Control/LabelContainer/ViewStageLabel
-@onready var settings_label = $Control/LabelContainer/SettingsLabel
 @onready var exit_label = $Control/LabelContainer/ExitLabel
 @onready var label_container = $Control/LabelContainer
 @onready var restart_request = $RestartRequest
@@ -23,8 +21,8 @@ func _ready():
 	for label in label_container.get_children():
 		label.label_settings.font_color = Color(0.5, 0.5, 0.5)
 	resume_label.label_settings.font_color = Color(1, 1, 1)
-	star_counter.text = "* x " + str(SOGlobal.save_data.get_total_star_count())
-	coin_counter.text = "$ x " + str(SOGlobal.save_data.get_total_coin_coint())
+	#star_counter.text = "* x " + str(SOGlobal.save_data.get_total_star_count())
+	#coin_counter.text = "$ x " + str(SOGlobal.save_data.get_total_coin_coint())
 
 func change_menu_selection(desired_selected : int) -> void:
 	
@@ -41,25 +39,14 @@ func change_menu_selection(desired_selected : int) -> void:
 		0:
 			resume_label.label_settings.font_color = Color(1, 1, 1)
 		1:
-			view_stage_label.label_settings.font_color = Color(1, 1, 1)
-		2:
-			settings_label.label_settings.font_color = Color(1, 1, 1)
-		3:
 			exit_label.label_settings.font_color = Color(1, 1, 1)
 
 func call_selection_function(desired_button : int) -> void:
 	match desired_button:
 		0: # resume
 			_unpause()
-		1: # view level
-			print("todo")
-		2: # open settings
-			var settings_ui = preload("res://mario/settings_menu.tscn").instantiate()
-			settings_ui.pause_menu = self
-			add_child(settings_ui)
-			hide_pause_menu = true
-		3: # quit
-			SOGlobal.save_data.save_game()
+		1: # quit
+			#SOGlobal.save_data.save_game()
 			get_tree().quit()
 
 func _unpause() -> void:

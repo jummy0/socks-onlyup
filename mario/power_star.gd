@@ -3,9 +3,10 @@ class_name PowerStar extends Node3D
 @onready var area_3d := $Area3D as Area3D
 @onready var shape_cast_3d: = $ShapeCast3D as ShapeCast3D
 @onready var star_mesh := $StarMesh as MeshInstance3D
-@export var star_gotten : bool = false
+var star_gotten : bool = false
+@export var star_id : String
+@export var start_active : bool = false
 var destroy_on_retry : bool = false
-var star_id : String
 var star_old_pos : Vector3
 var star_target_pos : Vector3
 var star_state : int = 0
@@ -24,6 +25,10 @@ func _ready():
 	star_mesh.material_override = new_star_mat
 	
 	await get_tree().create_timer(0.1).timeout
+	
+	if start_active:
+		_activate_star()
+	
 	var intersecting = true
 	while intersecting:
 		shape_cast_3d.force_shapecast_update()

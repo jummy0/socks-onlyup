@@ -11,7 +11,7 @@ var sky_material := preload("res://mario/sky_material.tres") as ShaderMaterial
 var global_sound := AudioStreamPlayer.new() as AudioStreamPlayer
 var global_sound_stream := AudioStreamPolyphonic.new() as AudioStreamPolyphonic
 var start_angle := 0.0
-var save_data := MarioSaveFile.new()
+#var save_data := MarioSaveFile.new()
 var total_coins : int = 0
 var main_star_pos : Vector3 = Vector3.ZERO
 var restart_desired : bool = false
@@ -25,7 +25,7 @@ func play_sound(inSound, volume : float = 0, pitch : float = 1) -> void:
 
 func generate_power_star(in_star_id : String, in_pos : Vector3, in_target_pos : Vector3 = Vector3.ZERO) -> PowerStar:
 	var new_star : PowerStar = preload("res://mario/power_star.tscn").instantiate()
-	new_star.star_gotten = save_data.is_star_collected(current_seed, in_star_id)
+	#new_star.star_gotten = save_data.is_star_collected(in_star_id)
 	print(new_star.star_gotten)
 	new_star.position = in_pos
 	new_star.star_id = in_star_id
@@ -174,7 +174,7 @@ func _ready():
 			var event = InputMap.action_get_events(action)[k]
 			print(event)
 			print(event.device)
-	save_data.load_game()
+	#save_data.load_game()
 
 
 var unfocused := false

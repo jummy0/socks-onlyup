@@ -366,17 +366,16 @@ var current_coin_count : int = 0
 func _get_power_star(in_star_id : String) -> void:
 	finish_time = Time.get_ticks_msec()
 	var time_in_seconds : float = float(finish_time - start_time) * 0.001
-	SOGlobal.save_data.try_submit_save_block(SOGlobal.current_seed, in_star_id, time_in_seconds, current_coin_count, num_checkpoints_used, true)
 	_internal.set_action(SM64MarioAction.FALL_AFTER_STAR_GRAB)
 	audio_stream_player.play()
-	var saysound_playback : AudioStreamPlaybackPolyphonic = audio_stream_player.get_stream_playback()
-	saysound_playback.play_stream(preload("res://mario/enter_painting.WAV"), 0, -8, 1.0)
+	var audio_player : AudioStreamPlaybackPolyphonic = audio_stream_player.get_stream_playback()
+	audio_player.play_stream(preload("res://mario/enter_painting.WAV"), 0, -8, 1.0)
 	await get_tree().create_timer(0.5).timeout
-	saysound_playback.play_stream(preload("res://mario/star_get.wav"), 0, 0, 1.0)
+	audio_player.play_stream(preload("res://mario/star_get.wav"), 0, 0, 1.0)
 	#_internal.set_action(SM64MarioAction.FALL_AFTER_STAR_GRAB)
 	set_angle((camera.position - position).normalized())
 	await get_tree().create_timer(1.2).timeout
-	saysound_playback.play_stream(preload("res://mario/here_we_go.wav"), 0, 10, 1.0)
+	audio_player.play_stream(preload("res://mario/here_we_go.wav"), 0, 10, 1.0)
 
 var preview_cam_yaw : float = 0
 var preview_cam_pitch : float = 0
