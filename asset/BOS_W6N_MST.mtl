@@ -1,0 +1,12 @@
+# Blender 5.0.1 MTL File: 'None'
+# www.blender.org
+
+newmtl M_BOS_W6N_MST_body
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.550000
+d 1.000000
+illum 2
+map_Kd BOS_W6N_MST.png

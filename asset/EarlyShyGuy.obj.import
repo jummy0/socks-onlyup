@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cpelsla4dqah3"
+path="res://.godot/imported/EarlyShyGuy.obj-178df5b3b0b11cbdc0d26c7b77e8479f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/EarlyShyGuy.obj-178df5b3b0b11cbdc0d26c7b77e8479f.mesh"]
+
+source_file="res://asset/EarlyShyGuy.obj"
+dest_files=["res://.godot/imported/EarlyShyGuy.obj-178df5b3b0b11cbdc0d26c7b77e8479f.mesh", "res://.godot/imported/EarlyShyGuy.obj-178df5b3b0b11cbdc0d26c7b77e8479f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

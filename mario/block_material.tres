@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bv5hj342vy6tc" path="res://mario/debug_floor.png" id="2_p8ugp"]
 
 [sub_resource type="Gradient" id="Gradient_8apjn"]
-offsets = PackedFloat32Array(0, 0.537255, 0.972549)
-colors = PackedColorArray(0.705882, 0.137255, 0.054902, 1, 1, 1, 1, 1, 0.705882, 0.137255, 0.054902, 1)
+offsets = PackedFloat32Array(0.46560848)
+colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x0k61"]
 gradient = SubResource("Gradient_8apjn")

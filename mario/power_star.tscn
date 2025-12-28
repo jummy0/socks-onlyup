@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://d3lw47lfofslh"]
+[gd_scene load_steps=9 format=4 uid="uid://d3lw47lfofslh"]
 
 [ext_resource type="Script" uid="uid://dop70wbgetbpu" path="res://mario/power_star.gd" id="1_u4xin"]
 [ext_resource type="Shader" uid="uid://jb7chanoaddr" path="res://EnvironmentMap.gdshader" id="2_savh8"]
 [ext_resource type="Texture2D" uid="uid://cwt81cb746m7q" path="res://mario/env_map_shiny_blurry.png" id="3_awppy"]
+[ext_resource type="Texture2D" uid="uid://dhp0h2p7egisy" path="res://mario/shadow.png" id="4_lhups"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_658mp"]
 render_priority = 0
@@ -67,5 +68,12 @@ shape = SubResource("CylinderShape3D_04itl")
 enabled = false
 shape = SubResource("CylinderShape3D_04itl")
 target_position = Vector3(0, -0.5, 0)
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.995, 0)
+size = Vector3(1, 32, 1)
+texture_albedo = ExtResource("4_lhups")
+normal_fade = 0.5
+upper_fade = 1e-05
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

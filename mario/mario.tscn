@@ -36,7 +36,7 @@ shader_parameter/checkerRepeat = 12.0
 shader_parameter/checkerRotate = -0.1
 shader_parameter/outlineSize = 6.58
 shader_parameter/checkerScrollSpeed = Vector2(0.2, -0.1)
-shader_parameter/outlineColor = Color(0.447059, 0.745098, 0.917647, 1)
+shader_parameter/outlineColor = Color(0.44705883, 0.74509805, 0.91764706, 1)
 shader_parameter/topGradientCheck1 = Color(0.34902, 0.631373, 0.901961, 1)
 shader_parameter/bottomGradientCheck1 = Color(0.207843, 0.356863, 0.490196, 1)
 shader_parameter/topGradientCheck2 = Color(0.129412, 0.372549, 0.588235, 1)
@@ -77,8 +77,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.556764, 0)
 shape = SubResource("CylinderShape3D_55yaj")
 
 [node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.995, 0)
-size = Vector3(1, 32, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.825017, 0)
+size = Vector3(1, 32.339966, 1)
 texture_albedo = ExtResource("3_cdwnk")
 normal_fade = 0.5
 upper_fade = 1e-05
@@ -134,6 +134,21 @@ offset_top = 60.0
 offset_right = -0.428024
 offset_bottom = 70.24
 text = "@*0"
+label_settings = SubResource("LabelSettings_46e2l")
+
+[node name="ElevationCounter" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.05
+anchor_right = 0.138
+anchor_bottom = 0.108
+offset_left = -0.28027725
+offset_top = 117.600006
+offset_right = -0.14830017
+offset_bottom = 127.840004
+text = "67m"
 label_settings = SubResource("LabelSettings_46e2l")
 
 [node name="PowerDisp" type="TextureRect" parent="."]

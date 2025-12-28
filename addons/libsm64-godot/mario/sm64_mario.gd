@@ -218,6 +218,7 @@ var _mario_input := {}
 @onready var star_counter = $StarCounter
 @onready var power_disp = $PowerDisp
 @onready var health_wedges_disp = $PowerDisp/HealthWedges
+@onready var elevation_counter = $ElevationCounter
 
 var _paused : bool = false
 
@@ -376,6 +377,8 @@ func _get_power_star(in_star_id : String) -> void:
 	set_angle((camera.position - position).normalized())
 	await get_tree().create_timer(1.2).timeout
 	audio_player.play_stream(preload("res://mario/here_we_go.wav"), 0, 10, 1.0)
+	await get_tree().create_timer(2.0).timeout
+	_internal.set_action(SM64MarioAction.IDLE)
 
 var preview_cam_yaw : float = 0
 var preview_cam_pitch : float = 0
@@ -559,9 +562,18 @@ func _tick(delta: float) -> void:
 	var timer_seconds : float = float(finish_time - start_time) * 0.001
 	if finish_time < 0:
 		timer_seconds = float(Time.get_ticks_msec() - start_time) * 0.001
-	level_timer.text = "%02d:%02d.%03d" % [timer_seconds/60.0, fmod(timer_seconds, 60.0), fmod(timer_seconds * 1000, 1000.0)]
-	
+	if timer_seconds < 3600:
+		level_timer.text = "%02d:%02d.%03d" % [timer_seconds/60.0, fmod(timer_seconds, 60.0), fmod(timer_seconds * 1000, 1000.0)]
+	else:
+		level_timer.text = "%d:%02d:%02d.%03d" % [timer_seconds/3600.0, fmod(timer_seconds/60.0, 60.0), fmod(timer_seconds, 60.0), fmod(timer_seconds * 1000, 1000.0)]
 	visible = true
+	
+	elevation_counter.text = "%dm" % [position.y]
+	#power_disp.material.set_shader_parameter("outlineColor",         Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.75, 0.2 if health_wedges == 0 else 1.0))
+	#power_disp.material.set_shader_parameter("topGradientCheck1",    Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.8, 0.15 if health_wedges == 0 else 0.75))
+	#power_disp.material.set_shader_parameter("bottomGradientCheck1", Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.8, 0.1 if health_wedges == 0 else 0.5))
+	#power_disp.material.set_shader_parameter("topGradientCheck2",    Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 1.0, 0.1 if health_wedges == 0 else 0.5))
+	#power_disp.material.set_shader_parameter("bottomGradientCheck2", Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 1.0, 0.05 if health_wedges == 0 else 0.25))
 	
 	if _paused:
 		return
