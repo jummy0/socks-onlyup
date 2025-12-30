@@ -14,7 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cpelsla4dqah3" path="res://asset/EarlyShyGuy.obj" id="12_65rkn"]
 [ext_resource type="PackedScene" uid="uid://cg8l4angkunu5" path="res://mario/mario.tscn" id="13_quco0"]
 [ext_resource type="PackedScene" uid="uid://d3lw47lfofslh" path="res://mario/power_star.tscn" id="14_vrkac"]
-[ext_resource type="Shader" uid="uid://b765d0506s4xd" path="res://wiggly.gdshader" id="15_1ssu2"]
+[ext_resource type="Shader" uid="uid://cqh2n5od7jmtl" path="res://wiggly2.gdshader" id="15_1ssu2"]
 [ext_resource type="FontFile" uid="uid://bi3mvp2yj72db" path="res://mario/ui_lettering.png" id="15_k57bu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ssu2"]
@@ -61,9 +61,15 @@ surface_type = 12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b20ie"]
 shader = ExtResource("15_1ssu2")
-shader_parameter/wiggle_width = 150.0
-shader_parameter/wiggle_speed = 5.0
-shader_parameter/wiggle_magnitude = 4.0
+shader_parameter/preset = 1
+shader_parameter/vertical_period = 150.0
+shader_parameter/vertical_period2 = 10.0
+shader_parameter/vertical_speed = 1.0
+shader_parameter/vertical_magnitude = 5.0
+shader_parameter/horizontal_period = 0.0
+shader_parameter/horizontal_period2 = 4.0
+shader_parameter/horizontal_speed = 2.0
+shader_parameter/horizontal_magnitude = 4.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ssu2"]
 font = ExtResource("15_k57bu")
