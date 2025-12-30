@@ -1,0 +1,215 @@
+[gd_scene load_steps=28 format=3 uid="uid://78uyoyi5dj0u"]
+
+[ext_resource type="Script" uid="uid://cwmh2o71jyj7y" path="res://scene_base.gd" id="1_k67fi"]
+[ext_resource type="Texture2D" uid="uid://j0skqvrbr0qp" path="res://asset/shaving brush bug.jpg" id="2_k57bu"]
+[ext_resource type="Shader" uid="uid://ctqb4hsew8lxt" path="res://death_plane.gdshader" id="3_1ssu2"]
+[ext_resource type="Script" uid="uid://cs8ofdk2ib650" path="res://addons/libsm64-godot/components/sm64_surface_properties_component.gd" id="4_b20ie"]
+[ext_resource type="Script" uid="uid://13uun38swcuo" path="res://addons/libsm64-godot/handlers/sm64_static_surfaces_handler.gd" id="5_21igw"]
+[ext_resource type="Script" uid="uid://5kieivn8ehwn" path="res://addons/libsm64-godot/handlers/sm64_surface_objects_handler.gd" id="6_nxj6p"]
+[ext_resource type="Material" uid="uid://bid7sibxqlpii" path="res://mario/block_material.tres" id="7_6s7vd"]
+[ext_resource type="ArrayMesh" uid="uid://cqicv3hedy1sx" path="res://asset/BOS_W6N_MST.obj" id="8_dud0g"]
+[ext_resource type="PackedScene" uid="uid://duckq2p0ves7u" path="res://mario/coin.tscn" id="9_6wkqx"]
+[ext_resource type="ArrayMesh" uid="uid://q7i3k08govrh" path="res://asset/nachos.obj" id="10_crfx0"]
+[ext_resource type="ArrayMesh" uid="uid://cdjp3ti616ql4" path="res://asset/ObjectTalkingFlower.obj" id="11_f7jhy"]
+[ext_resource type="ArrayMesh" uid="uid://cpelsla4dqah3" path="res://asset/EarlyShyGuy.obj" id="12_65rkn"]
+[ext_resource type="PackedScene" uid="uid://cg8l4angkunu5" path="res://mario/mario.tscn" id="13_quco0"]
+[ext_resource type="PackedScene" uid="uid://d3lw47lfofslh" path="res://mario/power_star.tscn" id="14_vrkac"]
+[ext_resource type="Shader" uid="uid://b765d0506s4xd" path="res://wiggly.gdshader" id="15_1ssu2"]
+[ext_resource type="FontFile" uid="uid://bi3mvp2yj72db" path="res://mario/ui_lettering.png" id="15_k57bu"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ssu2"]
+panorama = ExtResource("2_k57bu")
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_b20ie"]
+sky_material = SubResource("PanoramaSkyMaterial_1ssu2")
+
+[sub_resource type="Environment" id="Environment_21igw"]
+background_mode = 2
+sky = SubResource("Sky_b20ie")
+ambient_light_source = 2
+ambient_light_color = Color(0.2592936, 0.25929376, 0.25929365, 1)
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_sun_scatter = 0.2
+fog_sky_affect = 0.0
+adjustment_contrast = 5.43
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwh77"]
+render_priority = 0
+shader = ExtResource("3_1ssu2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pvrxd"]
+material = SubResource("ShaderMaterial_gwh77")
+size = Vector2(1024, 1024)
+subdivide_width = 15
+subdivide_depth = 15
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_efxa6"]
+surface_type = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_37666"]
+material = ExtResource("7_6s7vd")
+size = Vector3(32, 1, 32)
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_4c57u"]
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_hhvd1"]
+surface_type = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b20ie"]
+shader = ExtResource("15_1ssu2")
+shader_parameter/wiggle_width = 150.0
+shader_parameter/wiggle_speed = 5.0
+shader_parameter/wiggle_magnitude = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ssu2"]
+font = ExtResource("15_k57bu")
+font_size = 20
+shadow_offset = Vector2(2, 2)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_k67fi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_21igw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(0.7071068, -0.49999994, 0.5, 0, 0.7071067, 0.70710677, -0.7071068, -0.49999994, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48, 0)
+mesh = SubResource("PlaneMesh_pvrxd")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="MeshInstance3D"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_efxa6")
+
+[node name="SM64StaticSurfaceHandler" type="Node" parent="."]
+script = ExtResource("5_21igw")
+
+[node name="SM64SurfaceObjectsHandler" type="Node" parent="."]
+script = ExtResource("6_nxj6p")
+
+[node name="OnlyUpLevel" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -2, 0)
+mesh = SubResource("BoxMesh_37666")
+skeleton = NodePath("../..")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D2"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="OnlyUpLevel/MeshInstance3D2" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 85.9981, 66.91756, -19.720802)
+mesh = SubResource("BoxMesh_37666")
+skeleton = NodePath("../..")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D2/MeshInstance3D2"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="BosW6nMst" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(0.9942803, -0.10536448, -0.017465629, 0.06641151, 0.48186567, 0.8737247, -0.08364344, -0.8698873, 0.48610693, -4.4787493, -0.94902897, -14.672365)
+mesh = ExtResource("8_dud0g")
+skeleton = NodePath("../..")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/BosW6nMst"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_hhvd1")
+
+[node name="Label3D" type="Label3D" parent="OnlyUpLevel/BosW6nMst"]
+transform = Transform3D(1, 0, 0, 0, 0.49824557, -0.867036, 0, 0.867036, 0.49824557, 0.11501974, 14.865874, 3.55937)
+billboard = 1
+text = "Zavok: ooouuuuggghh mario it's me zavok
+and i'm suffering excruciating lumbal pain
+from being rotated at a 60.9° degree angle
+to become a usable platform because my 
+SM64SurfacePropertiesComponent isn't
+setting my collision to non-slippery properly
+oughhhh help me mario"
+
+[node name="Coin" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -6.9456024)
+
+[node name="Coin2" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -1.9456024)
+
+[node name="Coin3" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -2.9456024)
+
+[node name="Coin4" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -3.9456024)
+
+[node name="Coin5" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -4.9456024)
+
+[node name="Coin6" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -5.9456024)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.9659256, 0.25881898, 0, -0.25881898, 0.9659256, 6.5467873, 1.7633197, 31.037075)
+mesh = SubResource("BoxMesh_37666")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D3"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.9659254, -0.25881895, 0, 0.25881895, 0.9659254, 12.809086, 7.279945, 20.941273)
+mesh = SubResource("BoxMesh_37666")
+skeleton = NodePath("../MeshInstance3D3")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D4"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="Nachos" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(183.96156, -78.47384, 2.0489097e-06, 78.47384, 183.96156, 4.5583993e-15, -1.8846031e-06, 8.039291e-07, 200, 95.492134, 20.992567, -11.949132)
+mesh = ExtResource("10_crfx0")
+skeleton = NodePath("../BosW6nMst")
+
+[node name="ObjectTalkingFlower" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1.3875839, -9.602112, 2.4236457, 1.5574524e-07, 2.4473207, 9.695908, -9.903262, 1.3453882, -0.3395862, 142.82652, 63.103756, -24.378244)
+mesh = ExtResource("11_f7jhy")
+
+[node name="EarlyShyGuy" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-22.468672, 19.878603, 0, -19.878605, -22.46867, 0, 0, 0, 30, 120.74027, 75.64302, -21.311708)
+mesh = ExtResource("12_65rkn")
+
+[node name="Mario" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_quco0")]
+camera = NodePath("../Camera3D")
+
+[node name="PowerStar2" parent="." instance=ExtResource("14_vrkac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4311604, 6.468607, -2.2358987)
+star_id = "test"
+start_active = true
+
+[node name="PowerStar" parent="." instance=ExtResource("14_vrkac")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5367055, 1.8231841, -2.3416119)
+star_id = "test"
+start_active = true
+
+[node name="JummyLabel" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_b20ie")
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.05
+anchor_right = 0.138
+anchor_bottom = 0.108
+offset_left = -29.560001
+offset_top = -31.0
+offset_right = 681.36
+offset_bottom = -20.760002
+text = "\"JUMMY'S FUNY AWESOMETESTWORLD\""
+label_settings = SubResource("LabelSettings_1ssu2")

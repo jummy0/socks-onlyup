@@ -188,3 +188,7 @@ func _notification(what):
 	elif what == NOTIFICATION_WM_WINDOW_FOCUS_IN: 
 		unfocused = false
 		
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build() and Input.is_action_just_pressed("debug_restart"):
+		get_tree().reload_current_scene()
+		global_sound.get_stream_playback().play_stream(preload("res://asset/PUSHITBACK.wav"), 0, -12, 1.0)

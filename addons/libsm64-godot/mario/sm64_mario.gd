@@ -129,6 +129,8 @@ var _health := FULL_HEALTH:
 		_health = value
 		health_changed.emit(_health)
 		health_wedges_changed.emit(health_wedges)
+		_update_power_disp_color()
+
 ## Mario's health (2 bytes, upper byte is the number of health wedges, lower byte portion of next wedge)
 var health: int:
 	get:
@@ -267,6 +269,7 @@ func _physics_process(delta: float) -> void:
 
 ## Create Mario (requires initializing the libsm64 via the global_init function)
 func create() -> void:
+	_update_power_disp_color()
 	if SM64Global.is_init():
 		if _id >= 0:
 			delete()
@@ -369,6 +372,7 @@ func _get_power_star(in_star_id : String) -> void:
 	var time_in_seconds : float = float(finish_time - start_time) * 0.001
 	_internal.set_action(SM64MarioAction.FALL_AFTER_STAR_GRAB)
 	audio_stream_player.play()
+	_internal.heal(32)
 	var audio_player : AudioStreamPlaybackPolyphonic = audio_stream_player.get_stream_playback()
 	audio_player.play_stream(preload("res://mario/enter_painting.WAV"), 0, -8, 1.0)
 	await get_tree().create_timer(0.5).timeout
@@ -569,11 +573,6 @@ func _tick(delta: float) -> void:
 	visible = true
 	
 	elevation_counter.text = "%dm" % [position.y]
-	#power_disp.material.set_shader_parameter("outlineColor",         Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.75, 0.2 if health_wedges == 0 else 1.0))
-	#power_disp.material.set_shader_parameter("topGradientCheck1",    Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.8, 0.15 if health_wedges == 0 else 0.75))
-	#power_disp.material.set_shader_parameter("bottomGradientCheck1", Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 0.8, 0.1 if health_wedges == 0 else 0.5))
-	#power_disp.material.set_shader_parameter("topGradientCheck2",    Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 1.0, 0.1 if health_wedges == 0 else 0.5))
-	#power_disp.material.set_shader_parameter("bottomGradientCheck2", Color.from_hsv(health_wedges * 0.08 - 0.1, 0.0 if health_wedges == 0 else 1.0, 0.05 if health_wedges == 0 else 0.25))
 	
 	if _paused:
 		return
@@ -667,3 +666,14 @@ func _tick(delta: float) -> void:
 		var ratio : float = 1.0 - time_since_start
 		ratio = ease(ratio, -2)
 		camera.global_transform = camera.global_transform.interpolate_with(view_stage_transform, ratio)
+
+func _update_power_disp_color() -> void:
+	var hue : float = [0.0, 0.0, 0.05, 0.11, 0.18, 0.27, 0.37, 0.47, 0.57][clamp(health_wedges, 0, 8)]
+	var base_saturation := 0.0 if health_wedges == 0 else 1.0
+	var base_value := 0.4 if health_wedges == 0 else 1.0
+	power_disp.material.set_shader_parameter("outlineColor",         Color.from_hsv(hue, base_saturation * 0.75, base_value))
+	power_disp.material.set_shader_parameter("topGradientCheck1",    Color.from_hsv(hue, base_saturation * 0.8,  base_value * 0.75))
+	power_disp.material.set_shader_parameter("bottomGradientCheck1", Color.from_hsv(hue, base_saturation * 0.8,  base_value * 0.5))
+	power_disp.material.set_shader_parameter("topGradientCheck2",    Color.from_hsv(hue, base_saturation,        base_value * 0.5))
+	power_disp.material.set_shader_parameter("bottomGradientCheck2", Color.from_hsv(hue, base_saturation,        base_value * 0.25))
+	

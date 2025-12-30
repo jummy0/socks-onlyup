@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg8l4angkunu5"]
+[gd_scene load_steps=20 format=3 uid="uid://cg8l4angkunu5"]
 
 [ext_resource type="Script" uid="uid://b06tba8jwus0a" path="res://addons/libsm64-godot/mario/sm64_mario.gd" id="1_vy05d"]
 [ext_resource type="FontFile" uid="uid://c25d003g01x4h" path="res://mario/Mario64.ttf" id="2_3w352"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://dkr305k56aqxu" path="res://mario/power_ui.gdshader" id="5_cfhc3"]
 [ext_resource type="Texture2D" uid="uid://dyms68ekl5gio" path="res://mario/checkerboard.png" id="6_0vgae"]
 [ext_resource type="Texture2D" uid="uid://bb6iaa2qu36la" path="res://mario/power_head_mask.png" id="7_mmu4j"]
+[ext_resource type="Shader" uid="uid://b2flcpe8e0s6y" path="res://mario/power_ui_one_color.gdshader" id="8_cha25"]
 [ext_resource type="Texture2D" uid="uid://cen8uruthosia" path="res://mario/power_text_mask.png" id="8_xynuk"]
 [ext_resource type="Texture2D" uid="uid://csm3y75usd5u5" path="res://mario/health_slices.png" id="9_0e7ou"]
 [ext_resource type="Shader" uid="uid://dm2r3fx38qq7f" path="res://mario/health_slices.gdshader" id="9_03fle"]
@@ -36,7 +37,7 @@ shader_parameter/checkerRepeat = 12.0
 shader_parameter/checkerRotate = -0.1
 shader_parameter/outlineSize = 6.58
 shader_parameter/checkerScrollSpeed = Vector2(0.2, -0.1)
-shader_parameter/outlineColor = Color(0.44705883, 0.74509805, 0.91764706, 1)
+shader_parameter/outlineColor = Color(0.9, 0.5, 0.4, 1)
 shader_parameter/topGradientCheck1 = Color(0.34902, 0.631373, 0.901961, 1)
 shader_parameter/bottomGradientCheck1 = Color(0.207843, 0.356863, 0.490196, 1)
 shader_parameter/topGradientCheck2 = Color(0.129412, 0.372549, 0.588235, 1)
@@ -44,11 +45,12 @@ shader_parameter/bottomGradientCheck2 = Color(0, 0.172549, 0.321569, 1)
 shader_parameter/checkerTexture = ExtResource("6_0vgae")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ywjq4"]
-shader = ExtResource("5_cfhc3")
+shader = ExtResource("8_cha25")
 shader_parameter/checkerRepeat = 16.0
 shader_parameter/checkerRotate = 0.1
 shader_parameter/outlineSize = -0.36
 shader_parameter/checkerScrollSpeed = Vector2(-0.05, 0.15)
+shader_parameter/baseColor = Color(0, 0.6, 1, 1)
 shader_parameter/outlineColor = Color(1, 1, 1, 1)
 shader_parameter/topGradientCheck1 = Color(1, 1, 1, 1)
 shader_parameter/bottomGradientCheck1 = Color(1, 1, 1, 1)

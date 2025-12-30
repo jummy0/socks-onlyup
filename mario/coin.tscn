@@ -72,7 +72,7 @@ shape = SubResource("SphereShape3D_dmeo7")
 target_position = Vector3(0, -2.5, 0)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-modulate = Color(1, 0.803922, 0.294118, 1)
+modulate = Color(1, 0.7733334, 0.19999999, 1)
 pixel_size = 0.02
 billboard = 1
 sprite_frames = SubResource("SpriteFrames_gscpw")

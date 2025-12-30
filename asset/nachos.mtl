@@ -1,20 +1,22 @@
-# Material file for nachos.obj
+# Blender 5.0.1 MTL File: 'None'
+# www.blender.org
 
 newmtl nacho
-	Ns 0
-	d 1
-	illum 2
-	Kd 0.8 0.8 0.8
-	Ks 0.0 0.0 0.0
-	Ka 0.2 0.2 0.2
-	map_Kd Tex_0001_1.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Tex_0001_1.png
 
 newmtl onion
-	Ns 0
-	d 1
-	illum 2
-	Kd 0.8 0.8 0.8
-	Ks 0.0 0.0 0.0
-	Ka 0.2 0.2 0.2
-	map_Kd Tex_0004_1.png
-
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Tex_0004_1.png
