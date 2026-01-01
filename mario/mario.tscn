@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c25d003g01x4h" path="res://mario/Mario64.ttf" id="2_3w352"]
 [ext_resource type="Texture2D" uid="uid://dhp0h2p7egisy" path="res://mario/shadow.png" id="3_cdwnk"]
 [ext_resource type="Material" uid="uid://bl762yb1x7p1q" path="res://mario/ui_text.tres" id="4_cha25"]
-[ext_resource type="FontFile" uid="uid://bi3mvp2yj72db" path="res://mario/ui_lettering.png" id="4_p843u"]
+[ext_resource type="FontFile" uid="uid://d0frtdpt4mmba" path="res://mario/ui_lettering.png" id="4_p843u"]
 [ext_resource type="Shader" uid="uid://dkr305k56aqxu" path="res://mario/power_ui.gdshader" id="5_cfhc3"]
 [ext_resource type="Texture2D" uid="uid://dyms68ekl5gio" path="res://mario/checkerboard.png" id="6_0vgae"]
 [ext_resource type="Texture2D" uid="uid://bb6iaa2qu36la" path="res://mario/power_head_mask.png" id="7_mmu4j"]
