@@ -141,6 +141,21 @@ offset_bottom = 70.24
 text = "@*0"
 label_settings = SubResource("LabelSettings_46e2l")
 
+[node name="ExtraLabel" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_13o4e")
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.05
+anchor_right = 0.138
+anchor_bottom = 0.108
+offset_left = 3.2791672
+offset_top = 181.80002
+offset_right = 3.411148
+offset_bottom = 192.04001
+label_settings = SubResource("LabelSettings_46e2l")
+
 [node name="ElevationCounter" type="Label" parent="."]
 texture_filter = 1
 texture_repeat = 1

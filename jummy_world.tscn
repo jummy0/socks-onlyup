@@ -1,18 +1,19 @@
-[gd_scene load_steps=28 format=3 uid="uid://78uyoyi5dj0u"]
+[gd_scene load_steps=44 format=3 uid="uid://78uyoyi5dj0u"]
 
 [ext_resource type="Script" uid="uid://cwmh2o71jyj7y" path="res://scene_base.gd" id="1_k67fi"]
 [ext_resource type="Texture2D" uid="uid://j0skqvrbr0qp" path="res://asset/shaving brush bug.jpg" id="2_k57bu"]
-[ext_resource type="Shader" uid="uid://ctqb4hsew8lxt" path="res://death_plane.gdshader" id="3_1ssu2"]
 [ext_resource type="Script" uid="uid://cs8ofdk2ib650" path="res://addons/libsm64-godot/components/sm64_surface_properties_component.gd" id="4_b20ie"]
 [ext_resource type="Script" uid="uid://13uun38swcuo" path="res://addons/libsm64-godot/handlers/sm64_static_surfaces_handler.gd" id="5_21igw"]
 [ext_resource type="Script" uid="uid://5kieivn8ehwn" path="res://addons/libsm64-godot/handlers/sm64_surface_objects_handler.gd" id="6_nxj6p"]
 [ext_resource type="Material" uid="uid://bid7sibxqlpii" path="res://mario/block_material.tres" id="7_6s7vd"]
+[ext_resource type="ArrayMesh" uid="uid://l8jfltcw6li2" path="res://asset/AsciiTest.obj" id="7_b20ie"]
 [ext_resource type="ArrayMesh" uid="uid://cqicv3hedy1sx" path="res://asset/BOS_W6N_MST.obj" id="8_dud0g"]
 [ext_resource type="PackedScene" uid="uid://duckq2p0ves7u" path="res://mario/coin.tscn" id="9_6wkqx"]
 [ext_resource type="ArrayMesh" uid="uid://q7i3k08govrh" path="res://asset/nachos.obj" id="10_crfx0"]
 [ext_resource type="ArrayMesh" uid="uid://cdjp3ti616ql4" path="res://asset/ObjectTalkingFlower.obj" id="11_f7jhy"]
 [ext_resource type="ArrayMesh" uid="uid://cpelsla4dqah3" path="res://asset/EarlyShyGuy.obj" id="12_65rkn"]
 [ext_resource type="PackedScene" uid="uid://cg8l4angkunu5" path="res://mario/mario.tscn" id="13_quco0"]
+[ext_resource type="ArrayMesh" uid="uid://igky7iwnclr3" path="res://asset/test_ramp.obj" id="14_b20ie"]
 [ext_resource type="PackedScene" uid="uid://d3lw47lfofslh" path="res://mario/power_star.tscn" id="14_vrkac"]
 [ext_resource type="Shader" uid="uid://cqh2n5od7jmtl" path="res://wiggly2.gdshader" id="15_1ssu2"]
 [ext_resource type="FontFile" uid="uid://bi3mvp2yj72db" path="res://mario/ui_lettering.png" id="15_k57bu"]
@@ -37,31 +38,32 @@ fog_sun_scatter = 0.2
 fog_sky_affect = 0.0
 adjustment_contrast = 5.43
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwh77"]
-render_priority = 0
-shader = ExtResource("3_1ssu2")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_pvrxd"]
-material = SubResource("ShaderMaterial_gwh77")
-size = Vector2(1024, 1024)
-subdivide_width = 15
-subdivide_depth = 15
-
-[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_efxa6"]
-surface_type = 5
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_4c57u"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_37666"]
 material = ExtResource("7_6s7vd")
 size = Vector3(32, 1, 32)
 
-[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_4c57u"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ssu2"]
+material = ExtResource("7_6s7vd")
+size = Vector2(1024, 1024)
+subdivide_width = 15
+subdivide_depth = 15
 
 [sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_hhvd1"]
 surface_type = 12
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ssu2"]
+albedo_color = Color(0.08468992, 0.08468992, 0.08468992, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b20ie"]
+material = SubResource("StandardMaterial3D_1ssu2")
+size = Vector3(50, 50, 1)
+subdivide_width = 31
+subdivide_height = 31
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b20ie"]
 shader = ExtResource("15_1ssu2")
-shader_parameter/preset = 1
 shader_parameter/vertical_period = 150.0
 shader_parameter/vertical_period2 = 10.0
 shader_parameter/vertical_speed = 1.0
@@ -76,6 +78,53 @@ font = ExtResource("15_k57bu")
 font_size = 20
 shadow_offset = Vector2(2, 2)
 
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_21igw"]
+surface_type = 1
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_nxj6p"]
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_6s7vd"]
+surface_type = 10
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_dud0g"]
+surface_type = 11
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_6wkqx"]
+surface_type = 12
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_crfx0"]
+surface_type = 5
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_f7jhy"]
+surface_type = 31
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_65rkn"]
+surface_type = 21
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_quco0"]
+surface_type = 3
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_vrkac"]
+surface_type = 13
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_v51hf"]
+surface_type = 4
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_b20ie"]
+surface_type = 9
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_ghr6n"]
+surface_type = 7
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_m7arm"]
+surface_type = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_6s7vd"]
+radius = 3.0
+height = 6.0
+radial_segments = 32
+rings = 16
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_k67fi")
 
@@ -88,14 +137,19 @@ fov = 45.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
 transform = Transform3D(0.7071068, -0.49999994, 0.5, 0, 0.7071067, 0.70710677, -0.7071068, -0.49999994, 0.5, 0, 0, 0)
+light_specular = 0.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["libsm64_static_surfaces"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48, 0)
-mesh = SubResource("PlaneMesh_pvrxd")
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 12, 57.435013)
+visible = false
+projection = 1
+fov = 45.0
+size = 25.0
 
-[node name="SM64SurfacePropertiesComponent" type="Node" parent="MeshInstance3D"]
-script = ExtResource("4_b20ie")
-surface_properties = SubResource("SM64SurfaceProperties_efxa6")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D2"]
+transform = Transform3D(0.70710677, -0.4999999, 0.5, 0, 0.70710677, 0.70710677, -0.70710677, -0.4999999, 0.5, 0, 0, 0)
+visible = false
+light_specular = 0.0
 
 [node name="SM64StaticSurfaceHandler" type="Node" parent="."]
 script = ExtResource("5_21igw")
@@ -104,22 +158,31 @@ script = ExtResource("5_21igw")
 script = ExtResource("6_nxj6p")
 
 [node name="OnlyUpLevel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -2, 0)
-mesh = SubResource("BoxMesh_37666")
-skeleton = NodePath("../..")
+[node name="AsciiTest" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(2, 0, 0, 0, -4.371139e-07, -2, 0, 10, -8.742278e-08, -77.03274, 26.337626, -19.047163)
+mesh = ExtResource("7_b20ie")
+skeleton = NodePath("../MeshInstance3D5")
 
-[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D2"]
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/AsciiTest"]
 script = ExtResource("4_b20ie")
 surface_properties = SubResource("SM64SurfaceProperties_4c57u")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="OnlyUpLevel/MeshInstance3D2" groups=["libsm64_static_surfaces"]]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 85.9981, 66.91756, -19.720802)
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 85.9981, 64.91755, -19.7208)
 mesh = SubResource("BoxMesh_37666")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D5"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -2, 0)
+mesh = SubResource("PlaneMesh_1ssu2")
 skeleton = NodePath("../..")
 
-[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D2/MeshInstance3D2"]
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D2"]
 script = ExtResource("4_b20ie")
 surface_properties = SubResource("SM64SurfaceProperties_4c57u")
 
@@ -191,20 +254,29 @@ mesh = ExtResource("11_f7jhy")
 transform = Transform3D(-22.468672, 19.878603, 0, -19.878605, -22.46867, 0, 0, 0, 30, 120.74027, 75.64302, -21.311708)
 mesh = ExtResource("12_65rkn")
 
-[node name="Mario" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_quco0")]
-camera = NodePath("../Camera3D")
-
-[node name="PowerStar2" parent="." instance=ExtResource("14_vrkac")]
+[node name="PowerStar2" parent="OnlyUpLevel" instance=ExtResource("14_vrkac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4311604, 6.468607, -2.2358987)
 star_id = "test"
 start_active = true
 
-[node name="PowerStar" parent="." instance=ExtResource("14_vrkac")]
+[node name="PowerStar" parent="OnlyUpLevel" instance=ExtResource("14_vrkac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5367055, 1.8231841, -2.3416119)
 star_id = "test"
 start_active = true
 
-[node name="JummyLabel" type="Label" parent="."]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="OnlyUpLevel"]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -58.932064, 13.096516, -22)
+mesh = SubResource("BoxMesh_b20ie")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D6"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_4c57u")
+
+[node name="Mario" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_quco0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 0)
+camera = NodePath("../Camera3D")
+
+[node name="JummyLabel" type="Label" parent="Mario"]
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_b20ie")
@@ -219,3 +291,221 @@ offset_right = 681.36
 offset_bottom = -20.760002
 text = "\"JUMMY'S FUNY AWESOMETESTWORLD\""
 label_settings = SubResource("LabelSettings_1ssu2")
+
+[node name="SurfaceTypeTest" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -32, 0, 32)
+
+[node name="TestRamp" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -58.62342, -2, 14.751867)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_21igw")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Burning"
+
+[node name="TestRamp2" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -14.623421, -2, 14.751871)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp2"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_nxj6p")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp2"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Default
+"
+
+[node name="TestRamp3" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, 7.376581, -2, 14.751873)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp3"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_6s7vd")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp3"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Very Slippery"
+
+[node name="TestRamp4" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -3.6234188, -2, 14.751872)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp4"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_dud0g")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp4"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Slippery"
+
+[node name="TestRamp5" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -25.62342, -2, 14.75187)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp5"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_6wkqx")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp5"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Not Slippery"
+
+[node name="TestRamp6" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -36.62342, -2, 14.751869)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp6"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_crfx0")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp6"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Death Plane"
+
+[node name="TestRamp7" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -47.62342, -2, 14.751868)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp7"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_f7jhy")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp7"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Ice"
+
+[node name="TestRamp8" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -69.62342, -2, 14.751866)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp8"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_65rkn")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp8"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Instant Quicksand"
+
+[node name="TestRamp9" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -80.62342, -2, 14.751865)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp9"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_quco0")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp9"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Hangable"
+
+[node name="TestRamp10" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -91.62342, -2, 14.751864)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp10"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_vrkac")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp10"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "TTM Vines"
+
+[node name="TestRamp11" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -102.62342, -2, 14.7518635)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp11"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_v51hf")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp11"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Slow"
+
+[node name="TestRamp12" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -113.62342, -2, 14.751863)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp12"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_b20ie")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp12"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Intangible"
+
+[node name="TestRamp13" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -124.62342, -2, 14.751862)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp13"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_ghr6n")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp13"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "Water"
+
+[node name="TestRamp14" type="MeshInstance3D" parent="SurfaceTypeTest" groups=["libsm64_static_surfaces"]]
+transform = Transform3D(-1, 0, 2.6226832e-07, 0, 3, 0, -8.742278e-08, 0, -3, -135.62341, -2, 14.751861)
+mesh = ExtResource("14_b20ie")
+skeleton = NodePath("../../OnlyUpLevel")
+
+[node name="SM64SurfacePropertiesComponent" type="Node" parent="SurfaceTypeTest/TestRamp14"]
+script = ExtResource("4_b20ie")
+surface_properties = SubResource("SM64SurfaceProperties_m7arm")
+
+[node name="Label3D" type="Label3D" parent="SurfaceTypeTest/TestRamp14"]
+transform = Transform3D(-1, 0, -8.742272e-08, 0, 0.33333316, 0, 2.9140924e-08, 0, -0.33333316, 1.3987635e-06, 1.3333327, 5.3333306)
+pixel_size = 0.05
+billboard = 1
+text = "0004"
+
+[node name="Ball4" type="MeshInstance3D" parent="." groups=["libsm64_static_surfaces"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 3, 15)
+mesh = SubResource("SphereMesh_6s7vd")

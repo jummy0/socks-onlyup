@@ -221,6 +221,7 @@ var _mario_input := {}
 @onready var power_disp = $PowerDisp
 @onready var health_wedges_disp = $PowerDisp/HealthWedges
 @onready var elevation_counter = $ElevationCounter
+@onready var debug_label = $ExtraLabel
 
 var _paused : bool = false
 
@@ -574,6 +575,7 @@ func _tick(delta: float) -> void:
 	
 	elevation_counter.text = "%dm" % [position.y]
 	
+	debug_label.text = "%s\n\n%7.2f\n%7.2f\n%7.2f\n\n%7.2f\n%7.2f\n%7.2f\n0X%08X\n%d" % [action_name, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, flags, SM64SurfaceProperties.SurfaceType.SURFACE_TYPE_HANGABLE]
 	if _paused:
 		return
 	
