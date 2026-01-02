@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://78uyoyi5dj0u"]
+[gd_scene load_steps=41 format=3 uid="uid://78uyoyi5dj0u"]
 
 [ext_resource type="Script" uid="uid://cwmh2o71jyj7y" path="res://scene_base.gd" id="1_k67fi"]
 [ext_resource type="Texture2D" uid="uid://j0skqvrbr0qp" path="res://asset/shaving brush bug.jpg" id="2_k57bu"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://13uun38swcuo" path="res://addons/libsm64-godot/handlers/sm64_static_surfaces_handler.gd" id="5_21igw"]
 [ext_resource type="Script" uid="uid://5kieivn8ehwn" path="res://addons/libsm64-godot/handlers/sm64_surface_objects_handler.gd" id="6_nxj6p"]
 [ext_resource type="Material" uid="uid://bid7sibxqlpii" path="res://mario/block_material.tres" id="7_6s7vd"]
-[ext_resource type="ArrayMesh" uid="uid://l8jfltcw6li2" path="res://asset/AsciiTest.obj" id="7_b20ie"]
 [ext_resource type="ArrayMesh" uid="uid://cqicv3hedy1sx" path="res://asset/BOS_W6N_MST.obj" id="8_dud0g"]
 [ext_resource type="PackedScene" uid="uid://duckq2p0ves7u" path="res://mario/coin.tscn" id="9_6wkqx"]
 [ext_resource type="ArrayMesh" uid="uid://q7i3k08govrh" path="res://asset/nachos.obj" id="10_crfx0"]
@@ -38,11 +37,11 @@ fog_sun_scatter = 0.2
 fog_sky_affect = 0.0
 adjustment_contrast = 5.43
 
-[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_4c57u"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_37666"]
 material = ExtResource("7_6s7vd")
 size = Vector3(32, 1, 32)
+
+[sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_4c57u"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1ssu2"]
 material = ExtResource("7_6s7vd")
@@ -52,15 +51,6 @@ subdivide_depth = 15
 
 [sub_resource type="SM64SurfaceProperties" id="SM64SurfaceProperties_hhvd1"]
 surface_type = 12
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ssu2"]
-albedo_color = Color(0.08468992, 0.08468992, 0.08468992, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_b20ie"]
-material = SubResource("StandardMaterial3D_1ssu2")
-size = Vector3(50, 50, 1)
-subdivide_width = 31
-subdivide_height = 31
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b20ie"]
 shader = ExtResource("15_1ssu2")
@@ -160,15 +150,6 @@ script = ExtResource("6_nxj6p")
 [node name="OnlyUpLevel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="AsciiTest" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
-transform = Transform3D(2, 0, 0, 0, -4.371139e-07, -2, 0, 10, -8.742278e-08, -77.03274, 26.337626, -19.047163)
-mesh = ExtResource("7_b20ie")
-skeleton = NodePath("../MeshInstance3D5")
-
-[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/AsciiTest"]
-script = ExtResource("4_b20ie")
-surface_properties = SubResource("SM64SurfaceProperties_4c57u")
-
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 85.9981, 64.91755, -19.7208)
 mesh = SubResource("BoxMesh_37666")
@@ -187,24 +168,13 @@ script = ExtResource("4_b20ie")
 surface_properties = SubResource("SM64SurfaceProperties_4c57u")
 
 [node name="BosW6nMst" type="MeshInstance3D" parent="OnlyUpLevel" groups=["libsm64_static_surfaces"]]
-transform = Transform3D(0.9942803, -0.10536448, -0.017465629, 0.06641151, 0.48186567, 0.8737247, -0.08364344, -0.8698873, 0.48610693, -4.4787493, -0.94902897, -14.672365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -4.4787493, -2.0837426, -14.672365)
 mesh = ExtResource("8_dud0g")
 skeleton = NodePath("../..")
 
 [node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/BosW6nMst"]
 script = ExtResource("4_b20ie")
 surface_properties = SubResource("SM64SurfaceProperties_hhvd1")
-
-[node name="Label3D" type="Label3D" parent="OnlyUpLevel/BosW6nMst"]
-transform = Transform3D(1, 0, 0, 0, 0.49824557, -0.867036, 0, 0.867036, 0.49824557, 0.11501974, 14.865874, 3.55937)
-billboard = 1
-text = "Zavok: ooouuuuggghh mario it's me zavok
-and i'm suffering excruciating lumbal pain
-from being rotated at a 60.9° degree angle
-to become a usable platform because my 
-SM64SurfacePropertiesComponent isn't
-setting my collision to non-slippery properly
-oughhhh help me mario"
 
 [node name="Coin" parent="OnlyUpLevel" instance=ExtResource("9_6wkqx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2965374, 0, -6.9456024)
@@ -263,14 +233,6 @@ start_active = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5367055, 1.8231841, -2.3416119)
 star_id = "test"
 start_active = true
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="OnlyUpLevel"]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -58.932064, 13.096516, -22)
-mesh = SubResource("BoxMesh_b20ie")
-
-[node name="SM64SurfacePropertiesComponent" type="Node" parent="OnlyUpLevel/MeshInstance3D6"]
-script = ExtResource("4_b20ie")
-surface_properties = SubResource("SM64SurfaceProperties_4c57u")
 
 [node name="Mario" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_quco0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, 0)

@@ -216,6 +216,7 @@ var _cam_dir := Vector3(0, 0, 1)
 var _cam_target_dist := 0.0
 var _mario_input := {}
 @onready var level_timer := $LevelTimer as Label
+@onready var respawn_timer := $RespawnTimer as Label
 @onready var coin_counter = $CoinCounter
 @onready var star_counter = $StarCounter
 @onready var power_disp = $PowerDisp
@@ -224,6 +225,7 @@ var _mario_input := {}
 @onready var debug_label = $ExtraLabel
 
 var _paused : bool = false
+var _respawn_button_hold_time : float = 0.0
 
 
 func _ready() -> void:
@@ -575,7 +577,7 @@ func _tick(delta: float) -> void:
 	
 	elevation_counter.text = "%dm" % [position.y]
 	
-	debug_label.text = "%s\n\n%7.2f\n%7.2f\n%7.2f\n\n%7.2f\n%7.2f\n%7.2f\n0X%08X\n%d" % [action_name, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z, flags, SM64SurfaceProperties.SurfaceType.SURFACE_TYPE_HANGABLE]
+	debug_label.text = "%s\n\n%7.2f\n%7.2f\n%7.2f\n\n%7.2f\n%7.2f\n%7.2f" % [action_name, position.x, position.y, position.z, velocity.x, velocity.y, velocity.z]
 	if _paused:
 		return
 	
@@ -607,7 +609,21 @@ func _tick(delta: float) -> void:
 	_mario_input.a = Input.is_action_pressed(input_a)
 	_mario_input.b = Input.is_action_pressed(input_b)
 	_mario_input.z = Input.is_action_pressed(input_z)
+	_mario_input.any_movement = _mario_input.stick or _mario_input.a or _mario_input.b or _mario_input.z
 	
+	if Input.is_action_pressed("debug_restart"):
+		if _mario_input.any_movement:
+			_respawn_button_hold_time = 0.0
+			respawn_timer.text = ""
+		elif not (action & SM64MarioAction.FLAG_AIR):
+			_respawn_button_hold_time += delta
+			respawn_timer.text = "Keep holding to respawn... %.1f" % [5.0 - _respawn_button_hold_time]
+			if _respawn_button_hold_time > 5.0:
+				_restore_mario_to_checkpoint()
+				_respawn_button_hold_time = 0.0
+	elif Input.is_action_just_released("debug_restart"):
+		_respawn_button_hold_time = 0.0
+		respawn_timer.text = ""
 	
 	var time_minus_start = Time.get_ticks_msec() - SOGlobal.level_start_time
 	
