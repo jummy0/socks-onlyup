@@ -120,7 +120,6 @@ func generate_block_from_pos_and_size(inPos : Vector3, inSize : Vector3, north_s
 	level_meshes.append(new_block)
 	return new_block
 	
-
 func generate_cylinder(inPos : Vector3, in_height : float, in_radius_bot : float, in_radius_top : float, in_parent = SOGlobal, move_mode : LevelBlock.move_type = LevelBlock.move_type.NONE, chatter : bool = false) -> LevelBlock:
 	var new_block := LevelBlock.new()
 	new_block.coin_surface = LevelBlock.coin_spawn_type.CIRCLE
@@ -175,7 +174,6 @@ func _ready():
 			print(event)
 			print(event.device)
 	#save_data.load_game()
-
 
 var unfocused := false
 

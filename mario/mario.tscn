@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cg8l4angkunu5"]
+[gd_scene load_steps=21 format=3 uid="uid://cg8l4angkunu5"]
 
 [ext_resource type="Script" uid="uid://c40gd2jyr50o7" path="res://mario/mario.gd" id="1_op52n"]
 [ext_resource type="FontFile" uid="uid://c25d003g01x4h" path="res://mario/Mario64.ttf" id="2_3w352"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cen8uruthosia" path="res://mario/power_text_mask.png" id="8_xynuk"]
 [ext_resource type="Texture2D" uid="uid://csm3y75usd5u5" path="res://mario/health_slices.png" id="9_0e7ou"]
 [ext_resource type="Shader" uid="uid://dm2r3fx38qq7f" path="res://mario/health_slices.gdshader" id="9_03fle"]
+[ext_resource type="Script" uid="uid://o4evumuqhw57" path="res://mario/fader.gd" id="12_nh0yd"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_a3013"]
 
@@ -26,10 +27,6 @@ shadow_offset = Vector2(2, 2)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iy0ix"]
 height = 6.0
 radius = 4.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_46e2l"]
-font = ExtResource("4_p843u")
-font_size = 42
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7qgrv"]
 shader = ExtResource("5_cfhc3")
@@ -61,6 +58,10 @@ shader_parameter/checkerTexture = ExtResource("6_0vgae")
 shader = ExtResource("9_03fle")
 shader_parameter/wedges = 8.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_46e2l"]
+font = ExtResource("4_p843u")
+font_size = 42
+
 [node name="Mario" type="Node3D"]
 script = ExtResource("1_op52n")
 mario_inputs_stick_left = &"mario_stick_left"
@@ -75,6 +76,8 @@ mario_inputs_button_z = &"mario_z"
 stream = SubResource("AudioStreamPolyphonic_a3013")
 autoplay = true
 max_polyphony = 8
+
+[node name="LibSM64AudioStreamPlayer" type="LibSM64AudioStreamPlayer" parent="."]
 
 [node name="MarioCollision" type="Area3D" parent="."]
 collision_layer = 2
@@ -104,7 +107,6 @@ label_settings = SubResource("LabelSettings_6h3om")
 horizontal_alignment = 1
 
 [node name="RespawnTimer" type="Label" parent="."]
-process_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.985
@@ -126,66 +128,15 @@ shape = SubResource("CylinderShape3D_iy0ix")
 target_position = Vector3(0, -2, 0)
 debug_shape_custom_color = Color(1, 1, 1, 1)
 
-[node name="CoinCounter" type="Label" parent="."]
-texture_filter = 1
-texture_repeat = 1
-material = ExtResource("4_cha25")
-anchors_preset = -1
-anchor_left = 0.027
-anchor_top = 0.05
-anchor_right = 0.138
-anchor_bottom = 0.108
-offset_left = -0.0760002
-offset_top = 0.0999985
-offset_right = 0.0559845
-offset_bottom = 0.0159988
-text = "$*0"
-label_settings = SubResource("LabelSettings_46e2l")
-
-[node name="StarCounter" type="Label" parent="."]
-texture_filter = 1
-texture_repeat = 1
-material = ExtResource("4_cha25")
-anchors_preset = -1
-anchor_left = 0.027
-anchor_top = 0.05
-anchor_right = 0.138
-anchor_bottom = 0.108
-offset_left = -0.560001
-offset_top = 60.0
-offset_right = -0.428024
-offset_bottom = 70.24
-text = "@*0"
-label_settings = SubResource("LabelSettings_46e2l")
-
-[node name="ElevationCounter" type="Label" parent="."]
-texture_filter = 1
-texture_repeat = 1
-material = ExtResource("4_cha25")
-anchors_preset = -1
-anchor_left = 0.027
-anchor_top = 0.05
-anchor_right = 0.138
-anchor_bottom = 0.108
-offset_left = -0.28027725
-offset_top = 119.600006
-offset_right = 105.93419
-offset_bottom = 158.58398
-text = "67m"
-label_settings = SubResource("LabelSettings_46e2l")
-
 [node name="PowerDisp" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_7qgrv")
+custom_minimum_size = Vector2(130.828, 130.828)
 anchors_preset = -1
-anchor_left = 0.868
-anchor_top = 0.039
-anchor_right = 0.97
-anchor_bottom = 0.221
-offset_left = -0.0400391
-offset_top = -0.0799999
-offset_right = 0.227905
-offset_bottom = -0.292023
-grow_horizontal = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_bottom = -28.0
+grow_vertical = 0
 size_flags_vertical = 0
 texture = ExtResource("7_mmu4j")
 expand_mode = 2
@@ -223,4 +174,54 @@ texture = ExtResource("9_0e7ou")
 expand_mode = 2
 stretch_mode = 4
 
-[connection signal="health_wedges_changed" from="." to="PowerDisp" method="_on_mario_health_wedges_changed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 34.0
+offset_top = 34.0
+offset_right = 156.0
+offset_bottom = 214.0
+
+[node name="CoinCounter" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_cha25")
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "🪙×0"
+label_settings = SubResource("LabelSettings_46e2l")
+
+[node name="BlueCoinCounter" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_cha25")
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "🔵×0"
+label_settings = SubResource("LabelSettings_46e2l")
+
+[node name="StarCounter" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_cha25")
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "⭐×0"
+label_settings = SubResource("LabelSettings_46e2l")
+
+[node name="ElevationCounter" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("4_cha25")
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "67m"
+label_settings = SubResource("LabelSettings_46e2l")
+
+[node name="Fader" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_nh0yd")
