@@ -14,6 +14,14 @@ extends LibSM64Mario
 
 const HOLD_DURATION_TO_RESPAWN := 5.0
 
+# List of actions that force mario to face the camera.
+const CAM_FACING_ACTIONS := [
+	LibSM64.ACT_STAR_DANCE_EXIT,
+	LibSM64.ACT_STAR_DANCE_NO_EXIT,
+	LibSM64.ACT_STAR_DANCE_WATER,
+	LibSM64.ACT_FALL_AFTER_STAR_GRAB
+]
+
 var _cam_rotation := 0.0
 var _cam_rotation_target := 0.0
 var _cam_zoom := 1
@@ -178,11 +186,10 @@ func _tick() -> void:
 	super()
 
 func _get_power_star(in_star_id : String) -> void:
-	#finish_time = Time.get_ticks_msec()
 	finish_time_in_seconds = float(elapsed_engine_ticks) / 30.0 + _time_since_last_tick
-	#var time_in_seconds : float = float(finish_time - start_time) * 0.001
 	
 	action = LibSM64.ACT_FALL_AFTER_STAR_GRAB
+	_cam_zoom = 0
 	audio_stream_player.play()
 	var saysound_playback : AudioStreamPlaybackPolyphonic = audio_stream_player.get_stream_playback()
 	saysound_playback.play_stream(preload("res://mario/enter_painting.WAV"), 0, -8)
@@ -245,7 +252,7 @@ func _make_mario_inputs() -> LibSM64MarioInputs:
 		mario_inputs.stick = mario_inputs.stick.normalized()
 	#DebugDraw2D.set_text("INPUT", mario_inputs.stick)
 
-	if action == LibSM64.ACT_STAR_DANCE_NO_EXIT or action == LibSM64.ACT_FALL_AFTER_STAR_GRAB or action == LibSM64.ACT_STAR_DANCE_EXIT:
+	if action in CAM_FACING_ACTIONS:
 		mario_inputs.cam_look *= -1
 	
 	# Discard all inputs except `cam_look` while the screen is fading out.
@@ -268,8 +275,7 @@ func _create_checkpoint() -> void:
 	SOGlobal.play_sound(preload("res://mario/sfx/sm64_drop_into_course.wav"), -6)
 
 func _fade_to_black_and_respawn_mario(to_checkpoint: bool = false) -> void:
-	if _fading_out:
-		return
+	if _fading_out: return
 	_fading_out = true
 	SOGlobal.play_sound(preload("res://mario/sfx/sm64_warp.wav"), -3)
 	if to_checkpoint:
@@ -298,23 +304,28 @@ func _restore_mario_to_checkpoint() -> void:
 	velocity = Vector3.ZERO
 	face_angle = checkpoint_facing
 	forward_velocity = 0.0
-	SOGlobal.play_sound(preload("res://mario/sfx/sm64_spinning_heart.wav"))
+	SOGlobal.play_sound(preload("res://mario/sfx/sm64_spinning_heart.wav"), 0)
 	action = LibSM64.ACT_IDLE
 
 var time_since_start : float = 0
 var view_stage_transform : Transform3D
 
 func _calculate_gameplay_camera(delta : float):
+	var spin := 0
 	if Input.is_action_just_pressed("cam_stick_left"):
-		if SOGlobal.flip_x:
-			_cam_rotation_target -= deg_to_rad(45)
-		else:
-			_cam_rotation_target += deg_to_rad(45)
+		spin += 1
 	if Input.is_action_just_pressed("cam_stick_right"):
-		if SOGlobal.flip_x:
-			_cam_rotation_target += deg_to_rad(45)
-		else:
-			_cam_rotation_target -= deg_to_rad(45)
+		spin -= 1
+	if spin:
+		if SOGlobal.flip_x: spin *= -1
+		SOGlobal.play_sound(preload("res://mario/sfx/custom_camera_spin_short.wav"), -3)
+		_cam_rotation_target = snappedf(_cam_rotation_target + spin * deg_to_rad(45), deg_to_rad(45))
+	
+	# Press R (R1) to re-center camera, unless Mario is being forced to look at the camera.
+	if Input.is_action_pressed("cam_r") and not action in CAM_FACING_ACTIONS:
+		if Input.is_action_just_pressed("cam_r"):
+			SOGlobal.play_sound(preload("res://mario/sfx/sm64_camera_click.wav"), -6)
+		_cam_rotation_target = _face_angle + deg_to_rad(90)
 
 	if Input.is_action_just_pressed("cam_stick_down"):
 		if _cam_zoom < 2:
@@ -346,7 +357,7 @@ func _calculate_gameplay_camera(delta : float):
 			target_dist = 18
 			target_lookat = 2.6
 
-	_cam_rotation = lerp(_cam_rotation, _cam_rotation_target, delta * 12)
+	_cam_rotation = lerp_angle(_cam_rotation, _cam_rotation_target, delta * 12)
 	_cam_height = lerp(_cam_height, target_height, delta * 12)
 	_cam_dist = lerp(_cam_dist, target_dist, delta * 12)
 	camera.rotation = Vector3(0, _cam_rotation, 0)
@@ -373,8 +384,8 @@ func _update_power_disp_color() -> void:
 	var hue : float = [0.0, 0.0, 0.05, 0.11, 0.18, 0.27, 0.37, 0.47, 0.57][clamp(health_wedges, 0, 8)]
 	var base_saturation := 0.0 if health_wedges == 0 else 1.0
 	var base_value := 0.4 if health_wedges == 0 else 1.0
-	power_disp.material.set_shader_parameter("outlineColor",         Color.from_hsv(hue, base_saturation * 0.75, base_value))
-	power_disp.material.set_shader_parameter("topGradientCheck1",    Color.from_hsv(hue, base_saturation * 0.8,  base_value * 0.75))
-	power_disp.material.set_shader_parameter("bottomGradientCheck1", Color.from_hsv(hue, base_saturation * 0.8,  base_value * 0.5))
+	power_disp.material.set_shader_parameter("outlineColor",         Color.from_hsv(hue, base_saturation * 0.8, base_value))
+	power_disp.material.set_shader_parameter("topGradientCheck1",    Color.from_hsv(hue, base_saturation * 0.9,  base_value * 0.75))
+	power_disp.material.set_shader_parameter("bottomGradientCheck1", Color.from_hsv(hue, base_saturation * 0.9,  base_value * 0.5))
 	power_disp.material.set_shader_parameter("topGradientCheck2",    Color.from_hsv(hue, base_saturation,        base_value * 0.5))
 	power_disp.material.set_shader_parameter("bottomGradientCheck2", Color.from_hsv(hue, base_saturation,        base_value * 0.25))

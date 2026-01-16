@@ -1,0 +1,454 @@
+[gd_scene load_steps=6 format=3 uid="uid://bub3mehxvdvx8"]
+
+[ext_resource type="Script" uid="uid://e5cccos26o23" path="res://mario/credits.gd" id="1_2m3xw"]
+[ext_resource type="Texture2D" uid="uid://ci4iua42hjl6c" path="res://reference_stream_overlay.webp" id="2_6ehem"]
+[ext_resource type="FontFile" uid="uid://cl5w6uii40ily" path="res://mario/credits_font.png" id="3_cfadc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kv7ia"]
+line_spacing = 8.0
+font = ExtResource("3_cfadc")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_6j3hj"]
+line_spacing = 8.0
+font = ExtResource("3_cfadc")
+font_size = 24
+
+[node name="Credits" type="Control"]
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2m3xw")
+
+[node name="ReferenceStreamOverlay" type="TextureRect" parent="."]
+visible = false
+z_index = 67
+layout_mode = 0
+offset_right = 1280.0
+texture = ExtResource("2_6ehem")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SpecialThanks" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 872.0
+offset_right = 667.0
+offset_bottom = 5184.0
+text = "SPECIAL THANKS
+
+
+
+Abbis
+ABluebery
+alicendrome_
+AngusLeaves
+Ape_Escape_For_The_PS1
+arcoleiris
+Arkisajeep
+AstralSlash
+Atomnoise
+Ausk
+Avoult
+awfully_awful
+A_box_of_cheez_its
+balthizord
+beeftweest
+beylese
+bigbreastedmen
+bittybeasts
+blankhaj
+blookisses
+blubebby
+Bluejello1
+bluemonk19
+bluestbee
+bobduude
+bomber57
+BootyJim
+BraleyAI
+BubblyBatty
+bunkk2
+Bunnylizard9903
+Bunsig
+CakeCat666
+CalicoWren
+captain_starburst
+cathidor
+cats_eye
+CHARLLAHAN
+chouriel
+chris12902_
+ChurroChurr0
+clamwitch
+ClickAlice
+cockroachspaniel
+Codeblue666
+coin_cache
+cowlegz
+Cuboid64
+Daemonoph0bic
+DaNewDenu
+deebongos
+DistantPower
+Doctor_Of_Pyromancy
+DragonyMango
+Dreamkazoo
+DukeofAsh
+dumpkan
+DunkleDubs
+Dyvone
+Echo_Loss
+EepyTrickster
+EkoCreates
+elementxluna
+EniBenni
+etharia1
+EvanDude47
+evilasslesbian
+eyesit
+fadedrainb0w
+Falris
+Fanguo
+FaraamArt2
+fawnrir
+fiendish_tee
+FIVEpoint9
+FlaxJackalope
+Follyknight3D
+freeze2
+frankbedbroken
+frostarrows64
+funny3silly
+galeemmeme
+GallantCalamity
+garfieldpuzzlebox
+gayassbaby
+geo1152
+GhostLizard277
+Ghostsquid3689
+goomiii_
+GrayK006
+greenkibble
+Happyfroglegs
+HarmoniTV
+heckmastur
+heibuns_
+HenryScorp
+hexvanrex
+himeofficial
+hiss_al
+HonestTomsDiscountBeef
+HotCocoaRock
+IceWolf762
+ico_p_specter
+ImCertain
+ImmaCanuck
+impCPU
+inbtwnLive
+infernal_fae
+Irony_OwO
+ItstheBear908
+jaceanator9
+jacknerik
+JakeJackJoe
+JamieJamemes
+jimothyyy_
+jummy0
+juniorspacejunk
+JustAnotherMuffin
+J0RBITS
+J_Ciner
+Kaijumafoo
+Kai_Jinxx
+karbij
+KawaiiPersonaQ
+Kelonisto
+kitfisto3
+kitribbon
+kuma_tm
+leisurelyLepidopteran
+lillipups813
+lilymouse23
+LittoralPeriwinkle
+LobsterFighter
+LordMagpie96
+lord_cw
+LtPriDe
+lucario814
+luckyducky5321
+luck_fever
+LycanThakri
+lycheegrave
+Lyn_Masters
+macs010
+mageezles
+magpieding
+Mak_Etcetera
+male_wife
+MamaRallen
+mayballoon
+maybeduende
+melodyburst
+Melody_Moonlight
+menliker500
+metal4pplesauce
+MicronOnline
+miikpal
+milkguylikesyou
+miryxsoul
+mochi_bird
+MoeTheFrog
+MothraElita93
+MrFact999
+MrMovie_
+MsAnaheim
+murabito
+mythsol
+Narumolly
+NavasClaus
+Nebamaindo
+Nightbot
+noelbee
+noel_kitsu
+nonexistentPumpkin
+normal_fairy
+novaetoile5
+NumbRaccoon
+nyxtheblazingdragon
+OctoRocket_
+oculuce
+ogrish94
+old_man_henderson_
+Omnitsu
+origamimatthew1
+Otael
+Outset__
+owainvevo
+Owlsyn
+PanicBetrayer
+PaperBoxHouse
+patchworkrat
+pea_txt
+perpetuareality
+peterthelarson
+Pia_duo
+pikuselu
+plattycatt
+PlayChameleonTwistPls
+PoisonLazVT
+polyhecks
+poop_door
+potatohelicopter
+Pufflehugs
+PunsyQueen
+Queen_Cierra
+qwat
+RadBungo
+rainemaker_
+ralph_90
+RanchPudding
+randomgooberness
+rats159
+redeyedsheepskull
+Regu_1
+richlitch
+rioblitzle
+riverg00
+ROBBYDUDE
+RobinCrumb
+rogibivv
+ronniethegreatandpowerful
+rowanbark
+rox300
+SalamanderSeer
+SapphireKnight0
+seththesloth2
+sewerchick
+Shadepath
+ShadowMuffins
+ShamCube
+ShanghaiOhMy
+ShinMaddrox
+ShutUpSergeant
+SiGH_BG
+sitcomrade
+sixnow
+slappini
+SleepingTableP3
+sm0lcat
+snoruntpyro
+snowdropleaf
+Solo_0asis
+sopysteak
+spikyo_
+SpookiMulder
+squibbb_
+Startacker
+stinky_lizard_
+stormybuckets
+StreamElements
+subatomicgamer67
+SumBuddy_
+SuperBari7
+swampbutch
+SydSavage
+synicalsnake
+synthwavenightbeat
+tallestfella
+Tanukizzy
+teanoh19
+TEETHKEEPER
+tellingbone
+telosie
+theniftytable
+TheOdyssean
+therabbles
+The_LastOutcast
+the_missing_number
+TidalTorrent
+tkhjackkilledroland
+tmrdevs
+transfaiz
+trans4trans
+trashmanasam
+TREBL1G
+Tredexim
+trucystar
+Tsavorix
+tsundenana
+Tuggsnor
+TwilightPB
+UnderseaDee
+unsweetened_teashades
+uuRETCH
+vergil_from_devilmaycry
+Violet_Ry
+Voigiln
+WaningQuarterz
+wardeningo
+Wetoof
+wifehound
+WiggleWorm02
+witchsand
+wobbalamp
+XyceliumHaven
+YeOldeCatMan
+zalkester
+Zapped_Zephyr
+Zavier351
+zeemiinow
+zeepoteepo
+ZeldaFan20
+zeroriver085
+zombiezrule23
+ZweiHawke
+00razza00
+1nstant3ggs
+444xeroxalto
+7namesam
+999burgers"
+label_settings = SubResource("LabelSettings_kv7ia")
+
+[node name="CreditRole" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 92.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXECUVISING PRODUCTOR"
+label_settings = SubResource("LabelSettings_6j3hj")
+horizontal_alignment = 1
+
+[node name="CreditLeft" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -200.0
+offset_right = 464.0
+offset_bottom = -112.0
+grow_vertical = 0
+text = "TWILIGHT
+
+SHIGERU MIYAMOTO"
+label_settings = SubResource("LabelSettings_kv7ia")
+
+[node name="CreditRight" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -338.0
+offset_top = -200.0
+offset_right = -128.0
+offset_bottom = -112.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GAY BOWSER
+
+YA MAMA"
+label_settings = SubResource("LabelSettings_kv7ia")
+horizontal_alignment = 2
+
+[node name="CreditCenter" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.0
+offset_top = 520.0
+offset_right = 123.0
+offset_bottom = 672.0
+grow_horizontal = 2
+text = "OBAMNA
+
+
+
+SODA"
+label_settings = SubResource("LabelSettings_6j3hj")
+horizontal_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+z_index = -1
+layout_mode = 1
+offset_left = 160.0
+offset_top = 40.0
+offset_right = 800.0
+offset_bottom = 400.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+fov = 45.0

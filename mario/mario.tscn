@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cg8l4angkunu5"]
+[gd_scene load_steps=22 format=3 uid="uid://cg8l4angkunu5"]
 
 [ext_resource type="Script" uid="uid://c40gd2jyr50o7" path="res://mario/mario.gd" id="1_op52n"]
 [ext_resource type="FontFile" uid="uid://c25d003g01x4h" path="res://mario/Mario64.ttf" id="2_3w352"]
 [ext_resource type="Texture2D" uid="uid://dhp0h2p7egisy" path="res://mario/shadow.png" id="3_cdwnk"]
-[ext_resource type="Material" uid="uid://bl762yb1x7p1q" path="res://mario/ui_text.tres" id="4_cha25"]
 [ext_resource type="FontFile" uid="uid://d0frtdpt4mmba" path="res://mario/ui_lettering.png" id="4_p843u"]
 [ext_resource type="Shader" uid="uid://dkr305k56aqxu" path="res://mario/power_ui.gdshader" id="5_cfhc3"]
 [ext_resource type="Texture2D" uid="uid://dyms68ekl5gio" path="res://mario/checkerboard.png" id="6_0vgae"]
@@ -12,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://csm3y75usd5u5" path="res://mario/health_slices.png" id="9_0e7ou"]
 [ext_resource type="Shader" uid="uid://dm2r3fx38qq7f" path="res://mario/health_slices.gdshader" id="9_03fle"]
 [ext_resource type="Script" uid="uid://o4evumuqhw57" path="res://mario/fader.gd" id="12_nh0yd"]
+[ext_resource type="Texture2D" uid="uid://ci4iua42hjl6c" path="res://reference_stream_overlay.webp" id="13_13o4e"]
+[ext_resource type="PackedScene" uid="uid://bub3mehxvdvx8" path="res://mario/credits.tscn" id="13_op52n"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_a3013"]
 
@@ -60,7 +61,7 @@ shader_parameter/wedges = 8.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_46e2l"]
 font = ExtResource("4_p843u")
-font_size = 42
+font_size = 54
 
 [node name="Mario" type="Node3D"]
 script = ExtResource("1_op52n")
@@ -131,7 +132,7 @@ debug_shape_custom_color = Color(1, 1, 1, 1)
 [node name="PowerDisp" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_7qgrv")
 custom_minimum_size = Vector2(130.828, 130.828)
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 28.0
@@ -183,7 +184,6 @@ offset_bottom = 214.0
 [node name="CoinCounter" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
-material = ExtResource("4_cha25")
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "🪙×0"
@@ -192,7 +192,6 @@ label_settings = SubResource("LabelSettings_46e2l")
 [node name="BlueCoinCounter" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
-material = ExtResource("4_cha25")
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "🔵×0"
@@ -201,7 +200,6 @@ label_settings = SubResource("LabelSettings_46e2l")
 [node name="StarCounter" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
-material = ExtResource("4_cha25")
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "⭐×0"
@@ -210,7 +208,6 @@ label_settings = SubResource("LabelSettings_46e2l")
 [node name="ElevationCounter" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 texture_repeat = 1
-material = ExtResource("4_cha25")
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 text = "67m"
@@ -225,3 +222,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_nh0yd")
+
+[node name="ReferenceStreamOverlay" type="TextureRect" parent="."]
+visible = false
+z_index = 67
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_13o4e")
+expand_mode = 3
+
+[node name="Credits" parent="." instance=ExtResource("13_op52n")]
+visible = false
